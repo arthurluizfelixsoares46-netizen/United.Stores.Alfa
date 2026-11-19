@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>United Stores — Marketplace Global (+20.000 Produtos)</title>
+<style>
+  :root {
+    --bg-main: #f4f7fb;
+    --bg-card: #ffffff;
+    --blue-dark: #071e3d;
+    --blue-primary: #0b4fd6;
+    --blue-mid: #1665ff;
+    --blue-light: #e8f0fe;
+    --green-price: #128c3e;
+    --green-bg: #e7f7ed;
+    --red-loss: #c62828;
+    --red-bg: #fdecec;
+    --text-main: #0f172a;
+    --text-muted: #526075;
+    --border: #dce5f2;
+    --shadow: 0 6px 20px rgba(7, 30, 61, 0.08);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+
+  /* Header azul forte e branco com faixa passando por dentro das letras */
+  header.top-header {
+    background: linear-gradient(135deg, #061933 0%, #0b4fd6 55%, #1967ff 100%);
+    color: #ffffff;
+    padding: 18px 20px 22px;
+    border-bottom: 4px solid #ffffff;
+    box-shadow: 0 8px 24px rgba(6, 25, 51, 0.22);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+  }
+
+  .header-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand-ribbon-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    user-select: none;
+  }
+
+  .brand-title {
+    position: relative;
+    font-size: clamp(1.7rem, 3.6vw, 2.75rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+    z-index: 2;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Faixa decorativa atravessando o centro das letras */
+  .brand-ribbon-wrap::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    top: 50%;
+    height: 10px;
+    transform: translateY(-50%) rotate(-3deg);
+    background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.92), rgba(147,197,253,0.95), rgba(255,255,255,0.92), rgba(255,255,255,0.18));
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #071e3d;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.65);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .header-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .stat-pill {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Barra externa de pesquisa, filtros, suporte, whatsapp e perfil */
+  .controls-bar {
+    max-width: 1360px;
+    margin: 18px auto 12px;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-box {
+    flex: 1 1 280px;
+    display: flex;
+    align-items: center;
+    background: var(--bg-main);
+    border: 2px solid var(--blue-primary);
+    border-radius: 10px;
+    padding: 4px 10px;
+    gap: 8px;
+  }
+
+  .search-box input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 8px 4px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    outline: none;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.12s ease, opacity 0.15s ease, background 0.15s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    background: var(--blue-primary);
+    color: #ffffff;
+  }
+
+  .btn-outline {
+    background: #ffffff;
+    color: var(--blue-dark);
+    border: 1.5px solid var(--blue-primary);
+  }
+
+  .btn-ai {
+    background: linear-gradient(135deg, #071e3d, #1665ff);
+    color: #ffffff;
+    border: 1px solid #93c5fd;
+  }
+
+  .btn-whatsapp {
+    background: #16a34a;
+    color: #ffffff;
+  }
+
+  .btn-plus {
+    background: linear-gradient(135deg, #0b4fd6, #071e3d);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+
+  .btn-danger {
+    background: var(--red-loss);
+    color: #ffffff;
+  }
+
+  /* Painel expansível de filtros */
+  .filters-panel {
+    max-width: 1360px;
+    margin: 0 auto 14px;
+    padding: 14px 16px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .filters-panel.open {
+    display: grid;
+  }
+
+  .filter-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 4px;
+  }
+
+  .filter-group select,
+  .filter-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.88rem;
+    background: #f8fafc;
+  }
+
+  /* Barra de perfil quando logado */
+  .profile-strip {
+    max-width: 1360px;
+    margin: 0 auto 16px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #071e3d, #0b4fd6);
+    color: #ffffff;
+    border-radius: 14px;
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .profile-strip.active {
+    display: flex;
+  }
+
+  .profile-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+    background: #ffffff;
+    color: var(--blue-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    overflow: hidden;
+  }
+
+  .profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Aviso de banimento */
+  .ban-banner {
+    max-width: 1360px;
+    margin: 0 auto 16px;
+    padding: 14px 18px;
+    background: var(--red-bg);
+    border: 2px solid var(--red-loss);
+    color: var(--red-loss);
+    border-radius: 12px;
+    font-weight: 700;
+    display: none;
+  }
+
+  .ban-banner.show {
+    display: block;
+  }
+
+  /* Vitrines */
+  .main-container {
+    max-width: 1360px;
+    margin: 0 auto 40px;
+    padding: 0 16px;
+  }
+
+  .section-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 22px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--blue-primary);
+  }
+
+  .section-title {
+    font-size: 1.22rem;
+    font-weight: 800;
+    color: var(--blue-dark);
+  }
+
+  .section-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+    gap: 16px;
+  }
+
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--blue-primary);
+  }
+
+  .product-media {
+    position: relative;
+    height: 168px;
+    background: linear-gradient(135deg, #e8f0fe, #f8fafc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .badge-store {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(7, 30, 61, 0.88);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .badge-plus {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #0b4fd6;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .product-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .product-name {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--text-main);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-price {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--green-price);
+    background: var(--green-bg);
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .product-rating {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #d97706;
+  }
+
+  .product-actions {
+    padding: 0 12px 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .product-actions .btn {
+    padding: 7px 8px;
+    font-size: 0.78rem;
+    justify-content: center;
+  }
+
+  .product-actions .btn-full {
+    grid-column: 1 / -1;
+  }
+
+  /* Paginação do catálogo massivo (+20.000 itens) */
+  .pagination-bar {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  /* Modais */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 30, 61, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 120;
+    padding: 14px;
+    overflow-y: auto;
+  }
+
+  .modal-backdrop.open {
+    display: flex;
+  }
+
+  .modal-card {
+    background: #ffffff;
+    border-radius: 16px;
+    max-width: 780px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+    border: 2px solid var(--blue-primary);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    position: relative;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+
+  .modal-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--blue-dark);
+  }
+
+  .close-btn {
+    background: #f1f5f9;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--text-main);
+  }
+
+  .form-grid {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .form-grid input,
+  .form-grid textarea,
+  .form-grid select {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    font-family: inherit;
+  }
+
+  .comment-item {
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  .comment-item img {
+    max-width: 180px;
+    max-height: 140px;
+    border-radius: 8px;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .similar-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 10px 0 16px;
+  }
+
+  .similar-mini {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px;
+    background: #f8fafc;
+    cursor: pointer;
+    font-size: 0.78rem;
+  }
+
+  .similar-mini .price {
+    color: var(--green-price);
+    font-weight: 800;
+  }
+
+  .chart-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+  }
+
+  .ai-chat-log {
+    height: 240px;
+    overflow-y: auto;
+    background: #f4f7fb;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-msg {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 85%;
+    font-size: 0.86rem;
+  }
+
+  .ai-msg.bot {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    align-self: flex-start;
+    border-left: 3px solid var(--blue-primary);
+  }
+
+  .ai-msg.user {
+    background: var(--blue-primary);
+    color: #ffffff;
+    align-self: flex-end;
+  }
+
+  .dev-secret-box {
+    border: 2px solid #071e3d;
+    background: #f0f6ff;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- CABEÇALHO EM AZUL FORTE E BRANCO COM FAIXA ATRAVESSANDO AS LETRAS -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="brand-ribbon-wrap" title="United Stores — Marketplace Global">
+        <h1 class="brand-title">UNITED STORES</h1>
+      </div>
+      <div class="header-stats">
+        <span class="stat-pill" id="stat-total-products">Catálogo: 20.500+ Produtos</span>
+        <span class="stat-pill" id="stat-ai-sync">IA Diária: -2.000 / +5.000 Itens</span>
+        <span class="stat-pill" id="stat-auth-status">Visitante (Login Gmail p/ Perfil)</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="ban-banner" id="ban-banner"></div>
+
+  <!-- BARRA EXTERNA: PESQUISAR PRODUTO, FILTROS, SUPORTE IA, WHATSAPP, GMAIL -->
+  <section class="controls-bar" aria-label="Controles principais da loja">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="search-input" placeholder="Pesquisar produto (RTX, teclado, monitor, SSD, loja...)" oninput="applyFiltersAndRender()" />
+    </div>
+
+    <button class="btn btn-outline" onclick="toggleFiltersPanel()">⚙️ Filtros</button>
+    <button class="btn btn-ai" onclick="openModal('ai-support-modal')">🤖 Suporte IA</button>
+    <a class="btn btn-whatsapp" href="https://wa.me/55319953706" target="_blank" rel="noopener noreferrer">💬 WhatsApp (55 31 99537-06)</a>
+    <button class="btn btn-primary" id="btn-auth-action" onclick="openAuthOrProfile()">✉️ Entrar com Gmail</button>
+  </section>
+
+  <!-- PAINEL DE FILTROS -->
+  <section class="filters-panel" id="filters-panel">
+    <div class="filter-group">
+      <label for="filter-category">Tipo de Produto</label>
+      <select id="filter-category" onchange="applyFiltersAndRender()">
+        <option value="all">Todos os Tipos</option>
+        <option value="GPU / RTX">Placas de Vídeo (RTX)</option>
+        <option value="Teclados">Teclados Mecânicos / Hall</option>
+        <option value="Monitores">Monitores & Displays</option>
+        <option value="Armazenamento">SSDs & NVMe</option>
+        <option value="PC Gamer">PCs & Kits Hardware</option>
+        <option value="Áudio & Periféricos">Áudio & Periféricos</option>
+        <option value="Diversos Globais">Diversos do Mundo Todo</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-store">Loja Parceira / Origem</label>
+      <select id="filter-store" onchange="applyFiltersAndRender()">
+        <option value="all">Todas as Lojas Autorizadas</option>
+        <option value="Amazon Prime">Amazon Prime</option>
+        <option value="Shoppy">Shoppy</option>
+        <option value="Newegg Global">Newegg Global</option>
+        <option value="AliExpress Authorized">AliExpress Authorized</option>
+        <option value="B&H Photo">B&H Photo</option>
+        <option value="United Stores Plus">United Stores Plus (Interno)</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-max-price">Preço Máximo (R$)</label>
+      <input type="number" id="filter-max-price" placeholder="Ex: 5000" min="1" oninput="applyFiltersAndRender()" />
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-sort">Ordenar Por</label>
+      <select id="filter-sort" onchange="applyFiltersAndRender()">
+        <option value="bestsellers">Mais Vendidos</option>
+        <option value="price-asc">Menor Preço</option>
+        <option value="price-desc">Maior Preço</option>
+        <option value="rating">Melhor Avaliação</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- BARRA DE PERFIL (EXIBIDA QUANDO LOGADO COM GMAIL) -->
+  <section class="profile-strip" id="profile-strip">
+    <div class="profile-user-info">
+      <div class="profile-avatar" id="profile-avatar-box">U</div>
+      <div>
+        <div style="font-weight: 800; font-size: 1rem;" id="profile-display-name">Usuário</div>
+        <div style="font-size: 0.78rem; opacity: 0.9;" id="profile-display-email">email@gmail.com</div>
+      </div>
+    </div>
+    <div class="profile-actions">
+      <button class="btn btn-outline" onclick="openModal('edit-profile-modal')">✏️ Editar Perfil</button>
+      <button class="btn btn-plus" onclick="openModal('plus-modal')">💎 Alugar Vitrine (Plus R$ 49,99)</button>
+      <button class="btn btn-plus" id="btn-publish-plus" onclick="openPublishModal()">➕ Colocar Produto (Plus)</button>
+      <button class="btn btn-outline" onclick="openSettingsModal()">⚙️ Configurações</button>
+      <button class="btn btn-outline" id="btn-secret-dev" style="display:none; background:#fef08a; color:#071e3d; border-color:#071e3d;" onclick="openModal('dev-ai-modal')">🛡️ IA Desenvolvedor I & II</button>
+      <button class="btn btn-danger" onclick="logoutUser()">Sair</button>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL: VITRINES -->
+  <main class="main-container">
+    <!-- Vitrine Plus (Produtos Internos) -->
+    <div id="plus-showcase-wrapper" style="display:none;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">💎 Vitrine United Stores Plus (Produtos Internos)</h2>
+          <p class="section-sub">Produtos publicados por assinantes Plus com logotipo oficial da United Stores, fotos/vídeos e avaliações públicas.</p>
+        </div>
+      </div>
+      <div class="products-grid" id="plus-products-grid"></div>
+    </div>
+
+    <!-- Vitrine Principal Global (+20.000 Produtos) -->
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">🌐 Vitrine Global — Hardware, PCs & Lojas do Mundo Todo</h2>
+        <p class="section-sub" id="catalog-summary">Carregando catálogo massivo de lojas autorizadas...</p>
+      </div>
+      <button class="btn btn-outline" onclick="runDailyAiCycleNow()">⚡ Simular Ciclo IA (-2.000 / +5.000)</button>
+    </div>
+
+    <div class="products-grid" id="main-products-grid"></div>
+
+    <div class="pagination-bar" id="pagination-bar"></div>
+  </main>
+
+  <!-- MODAL 1: LOGIN GMAIL -->
+  <div class="modal-backdrop" id="auth-modal">
+    <div class="modal-card" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 class="modal-title">✉️ Entrar com Gmail — United Stores</h3>
+        <button class="close-btn" onclick="closeModal('auth-modal')">✕</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">
+        Faça login com seu endereço Gmail para acessar seu perfil, editar nome/foto, assinar o Plus, comentar ou gerenciar a loja.
+      </p>
+      <div class="form-grid">
+        <input type="email" id="login-gmail-input" placeholder="seu.nome@gmail.com" />
+        <input type="text" id="login-name-input" placeholder="Seu nome de usuário (opcional)" />
+        <button class="btn btn-primary" onclick="submitGmailLogin()">Continuar com Gmail</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: EDITAR PERFIL -->
+  <div class="modal-backdrop" id="edit-profile-modal">
+    <div class="modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">✏️ Editar Perfil</h3>
+        <button class="close-btn" onclick="closeModal('edit-profile-modal')">✕</button>
+      </div>
+      <div class="form-grid">
+        <label style="font-size:0.82rem; font-weight:700;">Nome de Usuário</label>
+        <input type="text" id="edit-username-input" placeholder="Novo nome de usuário" />
+        <label style="font-size:0.82rem; font-weight:700;">URL da Foto de Perfil ou Arquivo</label>
+        <input type="text" id="edit-avatar-url" placeholder="https://... ou escolha um arquivo abaixo" />
+        <input type="file" id="edit-avatar-file" accept="image/*" />
+        <button class="btn btn-primary" onclick="saveProfileEdits()">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: ALUGAR VITRINE — UNITED STORES PLUS (R$ 49,99/mês) -->
+  <div class="modal-backdrop" id="plus-modal">
+    <div class="modal-card" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title">💎 United Stores Plus — R$ 49,99 / mês</h3>
+        <button class="close-btn" onclick="closeModal('plus-modal')">✕</button>
+      </div>
+      <p style="font-size: 0.9rem; margin-bottom: 12px;">
+        Alugue sua vitrine com <strong>acesso ilimitado</strong> para colocar produtos na vitrine com a logo da <strong>United Stores</strong>, fotos, vídeos e comentários com imagens.
+      </p>
+      <div style="background:#f0f6ff; border:1px solid var(--blue-primary); border-radius:12px; padding:14px; margin-bottom:14px; text-align:center;">
+        <div style="font-weight:800; color:var(--blue-dark); margin-bottom:6px;">Pagamento via PIX — Telefone: 55 31 8831-8720</div>
+        <div style="font-size:1.25rem; font-weight:900; color:var(--green-price); margin-bottom:10px;">Valor: R$ 49,99 / mês</div>
+        <canvas id="pix-qr-canvas" width="160" height="160" style="border:2px solid #071e3d; border-radius:8px; background:#fff; margin:0 auto 10px; display:block;"></canvas>
+        <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+          <button class="btn btn-outline" onclick="copyPixKey()">📋 Copiar PIX (55 31 8831-8720)</button>
+          <button class="btn btn-primary" onclick="activatePlusPlan()">✅ Confirmar Assinatura Plus (R$ 49,99)</button>
+        </div>
+        <div id="pix-feedback" style="margin-top:8px; font-size:0.84rem; font-weight:700; color:var(--green-price);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: COLOCAR PRODUTO (PLUS) -->
+  <div class="modal-backdrop" id="publish-product-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">➕ Colocar Produto na Vitrine (United Stores Plus)</h3>
+        <button class="close-btn" onclick="closeModal('publish-product-modal')">✕</button>
+      </div>
+      <div class="form-grid">
+        <input type="text" id="pub-name" placeholder="Nome do produto" />
+        <input type="number" id="pub-price" placeholder="Preço em R$ (Ex: 1299.90)" step="0.01" />
+        <select id="pub-category">
+          <option value="GPU / RTX">GPU / RTX</option>
+          <option value="Teclados">Teclados</option>
+          <option value="Monitores">Monitores</option>
+          <option value="Armazenamento">Armazenamento</option>
+          <option value="PC Gamer">PC Gamer</option>
+          <option value="Áudio & Periféricos">Áudio & Periféricos</option>
+          <option value="Diversos Globais">Diversos Globais</option>
+        </select>
+        <textarea id="pub-desc" rows="3" placeholder="Descrição detalhada do produto..."></textarea>
+        <label style="font-size:0.82rem; font-weight:700;">Fotos do produto (1 ou mais imagens)</label>
+        <input type="file" id="pub-images" accept="image/*" multiple />
+        <input type="text" id="pub-video-url" placeholder="Link de vídeo do produto (YouTube / MP4 - opcional)" />
+        <input type="file" id="pub-video-file" accept="video/*" />
+        <button class="btn btn-primary" onclick="publishPlusProduct()">Publicar na Vitrine Pública</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 5: DETALHES DO PRODUTO, SEMELHANTES E COMENTÁRIOS PÚBLICOS -->
+  <div class="modal-backdrop" id="product-detail-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="detail-title">Detalhes do Produto</h3>
+        <button class="close-btn" onclick="closeModal('product-detail-modal')">✕</button>
+      </div>
+      <div id="detail-content"></div>
+
+      <h4 style="margin-top:14px; color:var(--blue-dark); font-size:1rem;">🔄 Vitrine de Produtos Semelhantes</h4>
+      <div class="similar-strip" id="detail-similar-grid"></div>
+
+      <h4 style="margin-top:14px; color:var(--blue-dark); font-size:1rem;">💬 Avaliações e Comentários Públicos (com Fotos/Imagens)</h4>
+      <div id="detail-comments-list"></div>
+
+      <div class="form-grid" style="margin-top:10px;">
+        <select id="comment-rating">
+          <option value="5">⭐⭐⭐⭐⭐ (5 estrelas)</option>
+          <option value="4">⭐⭐⭐⭐ (4 estrelas)</option>
+          <option value="3">⭐⭐⭐ (3 estrelas)</option>
+          <option value="2">⭐⭐ (2 estrelas)</option>
+          <option value="1">⭐ (1 estrela)</option>
+        </select>
+        <textarea id="comment-text" rows="2" placeholder="Escreva sua avaliação ou comentário público (proibido agressão verbal ou conteúdo adulto)..."></textarea>
+        <label style="font-size:0.8rem; font-weight:700;">Anexar foto/imagem no comentário:</label>
+        <input type="file" id="comment-image-file" accept="image/*" />
+        <button class="btn btn-primary" onclick="submitProductComment()">Enviar Comentário Público</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 6: CONFIGURAÇÕES (VENDAS, LUCRO / GRÁFICO VERDE E VERMELHO, DINHEIRO RECEBIDO) -->
+  <div class="modal-backdrop" id="settings-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ Configurações & Painel Financeiro</h3>
+        <button class="close-btn" onclick="closeModal('settings-modal')">✕</button>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:12px;">
+        <div style="background:#f0f6ff; padding:12px; border-radius:10px; border:1px solid var(--border);">
+          <div style="font-size:0.78rem; color:var(--text-muted);">Total de Vendas</div>
+          <div style="font-size:1.25rem; font-weight:900; color:var(--blue-dark);" id="fin-total-sales">0</div>
+        </div>
+        <div style="background:#e7f7ed; padding:12px; border-radius:10px; border:1px solid #bbf7d0;">
+          <div style="font-size:0.78rem; color:var(--text-muted);">Total de Dinheiro Recebido</div>
+          <div style="font-size:1.25rem; font-weight:900; color:var(--green-price);" id="fin-total-received">R$ 0,00</div>
+        </div>
+        <div style="background:#f8fafc; padding:12px; border-radius:10px; border:1px solid var(--border);">
+          <div style="font-size:0.78rem; color:var(--text-muted);">Status Atual do Lucro</div>
+          <div style="font-size:1.05rem; font-weight:900;" id="fin-profit-status">Lucro em Alta</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+        <button class="btn btn-primary" onclick="simulateFinancePoint(true)">📈 Simular Venda / Lucro</button>
+        <button class="btn btn-danger" onclick="simulateFinancePoint(false)">📉 Simular Queda / Prejuízo</button>
+      </div>
+
+      <div class="chart-box">
+        <div style="font-size:0.82rem; font-weight:700; margin-bottom:6px;">Gráfico de Desempenho (Verde = Lucro / Alta | Vermelho = Prejuízo / Queda)</div>
+        <canvas id="profit-chart-canvas" width="700" height="220" style="width:100%; height:auto; background:#ffffff; border-radius:8px; border:1px solid #e2e8f0;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 7: SUPORTE IA -->
+  <div class="modal-backdrop" id="ai-support-modal">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🤖 Suporte IA — United Stores</h3>
+        <button class="close-btn" onclick="closeModal('ai-support-modal')">✕</button>
+      </div>
+      <div class="ai-chat-log" id="ai-chat-log">
+        <div class="ai-msg bot">Olá! Sou a Suporte IA da United Stores. Posso tirar dúvidas sobre o catálogo (+20.000 produtos), plano Plus (R$ 49,99 via PIX 55 31 8831-8720), regras de conduta ou suporte pelo WhatsApp 55 31 99537-06.</div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <input type="text" id="ai-question-input" placeholder="Pergunte algo sobre a loja..." onkeydown="if(event.key==='Enter') sendAiSupportMessage()" style="flex:1; padding:9px 11px; border-radius:8px; border:1px solid #cbd5e1;" />
+        <button class="btn btn-primary" onclick="sendAiSupportMessage()">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 8: IA DE SUPORTE AO DESENVOLVEDOR I & II (EXCLUSIVO PARA arthurluizfelixsoares46@gmail.com) -->
+  <div class="modal-backdrop" id="dev-ai-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">🛡️ Painel Exclusivo Desenvolvedor — IA I & IA II</h3>
+        <button class="close-btn" onclick="closeModal('dev-ai-modal')">✕</button>
+      </div>
+      <p style="font-size:0.84rem; color:var(--green-price); font-weight:800;">Acesso autorizado: arthurluizfelixsoares46@gmail.com</p>
+
+      <div class="dev-secret-box">
+        <h4 style="color:var(--blue-dark); margin-bottom:6px;">IA de Suporte ao Desenvolvedor I (Catálogo Externo Diário: -2.000 / +5.000 & Anti-Crime)</h4>
+        <p style="font-size:0.84rem; margin-bottom:8px;">Remove 2.000 itens antigos/desatualizados e adiciona 5.000 novos produtos de lojas externas autorizadas todos os dias, bloqueando produtos criminosos.</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="runDailyAiCycleNow()">🔄 Executar Ciclo Diário (-2.000 / +5.000)</button>
+          <button class="btn btn-outline" onclick="auditExternalCatalog()">🛡️ Auditar & Bloquear Produtos Criminosos</button>
+        </div>
+        <div id="dev-ai-1-log" style="margin-top:8px; font-size:0.82rem; font-weight:700; color:var(--blue-dark);"></div>
+      </div>
+
+      <div class="dev-secret-box">
+        <h4 style="color:var(--blue-dark); margin-bottom:6px;">IA de Suporte ao Desenvolvedor II (Supervisão de Produtos Internos & Banimento)</h4>
+        <p style="font-size:0.84rem; margin-bottom:8px;">Supervisiona produtos internos da loja, bane contas com produtos suspeitos, palavras pesadas ou conteúdo adulto (15 dias na 1ª vez; banimento permanente na reincidência).</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="runInternalAiSupervision()">🔍 Supervisionar Produtos Internos & Usuários</button>
+          <button class="btn btn-danger" onclick="clearBanForTesting()">♻️ Resetar Teste de Banimento</button>
+        </div>
+        <div id="dev-ai-2-log" style="margin-top:8px; font-size:0.82rem; font-weight:700; color:var(--blue-dark);"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function() {
+  "use strict";
+
+  const OWNER_EMAIL = "arthurluizfelixsoares46@gmail.com";
+  const PIX_PHONE = "55 31 8831-8720";
+  const ITEMS_PER_PAGE = 24;
+  const INITIAL_CATALOG_SIZE = 20500;
+
+  const CATEGORIES = [
+    "GPU / RTX",
+    "Teclados",
+    "Monitores",
+    "Armazenamento",
+    "PC Gamer",
+    "Áudio & Periféricos",
+    "Diversos Globais"
+  ];
+
+  const STORES = [
+    { name: "Amazon Prime", baseUrl: "https://www.amazon.com/s?k=" },
+    { name: "Shoppy", baseUrl: "https://shoppy.gg/products?search=" },
+    { name: "Newegg Global", baseUrl: "https://www.newegg.com/p/pl?d=" },
+    { name: "AliExpress Authorized", baseUrl: "https://www.aliexpress.com/wholesale?SearchText=" },
+    { name: "B&H Photo", baseUrl: "https://www.bhphotovideo.com/c/search?Ntt=" }
+  ];
+
+  const HARDWARE_TEMPLATES = {
+    "GPU / RTX": [
+      "NVIDIA GeForce RTX 4090 24GB GDDR6X",
+      "NVIDIA GeForce RTX 4080 Super 16GB",
+      "NVIDIA GeForce RTX 4070 Ti Super 16GB",
+      "NVIDIA GeForce RTX 4070 12GB Dual OC",
+      "NVIDIA GeForce RTX 4060 Ti 8GB GDDR6",
+      "NVIDIA GeForce RTX 3060 12GB Triple Fan",
+      "ASUS ROG Strix RTX 4080 White Edition",
+      "MSI Ventus 3X RTX 4070 Super"
+    ],
+    "Teclados": [
+      "Teclado Magnético Hall Effect Rapid Trigger 65%",
+      "Teclado Mecânico Custom 75% Gasket Mount",
+      "Teclado Gamer Low Profile Wireless RGB",
+      "Teclado Mecânico PBT Double-Shot TKL",
+      "Teclado Óptico Ultra-Rápido 8000Hz Polling"
+    ],
+    "Monitores": [
+      "Monitor Gamer QHD 27\" 240Hz IPS 0.5ms",
+      "Monitor Ultrawide 34\" 165Hz Curvo HDR",
+      "Monitor 4K UHD 28\" 144Hz HDMI 2.1",
+      "Monitor OLED 27\" 360Hz Esports"
+    ],
+    "Armazenamento": [
+      "SSD NVMe PCIe Gen4 2TB 7400MB/s",
+      "SSD NVMe PCIe Gen4 1TB 7000MB/s",
+      "SSD NVMe 4TB Heatsink PS5 & PC",
+      "SSD SATA III 2TB Leitura Rápida"
+    ],
+    "PC Gamer": [
+      "PC Gamer Completo RTX 4070 + DDR5 32GB",
+      "PC Gamer Compacto Mini-ITX RTX 4060",
+      "Kit Upgrade Placa-Mãe DDR5 + Processador High-End",
+      "Fonte Modular 850W 80 Plus Gold ATX 3.0"
+    ],
+    "Áudio & Periféricos": [
+      "Mouse Gamer Sem Fio 49g Sensor 30K DPI",
+      "Headset Wireless Baixa Latência 2.4GHz",
+      "Microfone Condensador USB/XLR Streaming",
+      "Mousepad Speed Control XL Bordas Costuradas"
+    ],
+    "Diversos Globais": [
+      "Cadeira Ergonômica Mesh Apoio Lombar",
+      "Hub USB-C Thunderbolt 4 12 Portas",
+      "Webcam 4K Auto-Focus Estúdio",
+      "Mochila Tech Impermeável Notebook 17\"",
+      "Luminária de Monitor Sem Reflexo"
+    ]
+  };
+
+  const FORBIDDEN_TERMS = [
+    "porn", "xxx", "sexo", "adulto", "nude", "cp", "arma", "droga", "cocaina", "crack",
+    "idiota", "burro", "lixo", "merda", "otario", "imbecil", "vagabundo", "desgraca", "puta", "arrombado"
+  ];
+
+  // Estado persistente
+  let state = {
+    user: null, // { email, name, avatar }
+    isPlus: false,
+    plusProducts: [],
+    commentsByProduct: {},
+    banInfo: { strikes: 0, bannedUntil: 0, permanent: false },
+    aiStats: { removedDaily: 2000, addedDaily: 5000, cycleCount: 1, blockedCrimeItems: 0 },
+    finance: {
+      salesCount: 14,
+      totalReceived: 6840.50,
+      history: [120, 340, 290, 510, 460, 780, 620, 950, 810, 1280]
+    },
+    currentPage: 1
+  };
+
+  // Catálogo massivo em memória (+20.000 itens)
+  let catalog = [];
+  let filteredCatalog = [];
+
+  function makeSvgThumbnail(label, sublabel, accentColor) {
+    const safeLabel = String(label).slice(0, 24).replace(/[<>&"]/g, "");
+    const safeSub = String(sublabel).slice(0, 22).replace(/[<>&"]/g, "");
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" viewBox="0 0 320 200">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#071e3d"/>
+          <stop offset="100%" stop-color="${accentColor}"/>
+        </linearGradient>
+      </defs>
+      <rect width="320" height="200" fill="url(#g)"/>
+      <rect x="16" y="16" width="288" height="168" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.35)"/>
+      <text x="160" y="92" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="16" font-weight="bold">${safeLabel}</text>
+      <text x="160" y="122" text-anchor="middle" fill="#bfdbfe" font-family="Arial,sans-serif" font-size="12">${safeSub}</text>
+      <text x="160" y="162" text-anchor="middle" fill="#86efac" font-family="Arial,sans-serif" font-size="11" font-weight="bold">UNITED STORES GLOBAL</text>
+    </svg>`;
+    return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+  }
+
+  function createCatalogItem(idNum, seedOffset) {
+    const cat = CATEGORIES[(idNum + seedOffset) % CATEGORIES.length];
+    const templates = HARDWARE_TEMPLATES[cat];
+    const baseName = templates[(idNum * 3 + seedOffset) % templates.length];
+    const store = STORES[(idNum + seedOffset * 2) % STORES.length];
+    const variantCode = `#US-${String(idNum).padStart(5, "0")}`;
+    const name = `${baseName} ${variantCode}`;
+
+    let minP = 120, maxP = 1500;
+    if (cat === "GPU / RTX") { minP = 1490; maxP = 11900; }
+    else if (cat === "PC Gamer") { minP = 2800; maxP = 14500; }
+    else if (cat === "Monitores") { minP = 890; maxP = 5400; }
+    else if (cat === "Teclados") { minP = 180; maxP = 1350; }
+    else if (cat === "Armazenamento") { minP = 240; maxP = 2200; }
+
+    const rawPrice = minP + (((idNum * 97 + seedOffset * 53) % 1000) / 1000) * (maxP - minP);
+    const price = Number(rawPrice.toFixed(2));
+    const rating = (4.2 + (((idNum + seedOffset) % 8) / 10)).toFixed(1);
+    const salesRank = 100000 - idNum;
+    const productUrl = `${store.baseUrl}${encodeURIComponent(baseName)}`;
+
+    return {
+      id: "ext-" + idNum + "-" + seedOffset,
+      name,
+      category: cat,
+      store: store.name,
+      price,
+      rating,
+      salesRank,
+      url: productUrl,
+      isPlus: false,
+      description: `Produto global autorizado via ${store.name} na categoria ${cat}. Especificações verificadas, envio internacional e suporte United Stores.`,
+      image: makeSvgThumbnail(baseName, store.name, "#0b4fd6")
+    };
+  }
+
+  function buildInitialCatalog(count) {
+    const arr = new Array(count);
+    for (let i = 0; i < count; i++) {
+      arr[i] = createCatalogItem(i + 1, 0);
+    }
+    return arr;
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem("united_stores_v2_state", JSON.stringify(state));
+    } catch (e) {
+      // Ignora erro de quota se houver mídia grande
+    }
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem("united_stores_v2_state");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        state = Object.assign({}, state, parsed);
+      }
+    } catch (e) {
+      // Mantém estado padrão seguro
+    }
+  }
+
+  function hasForbiddenContent(text) {
+    if (!text) return false;
+    const normalized = String(text).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return FORBIDDEN_TERMS.some(term => normalized.includes(term));
+  }
+
+  function penalizeUser(reason) {
+    const now = Date.now();
+    state.banInfo.strikes = (state.banInfo.strikes || 0) + 1;
+    if (state.banInfo.strikes >= 2) {
+      state.banInfo.permanent = true;
+    } else {
+      state.banInfo.bannedUntil = now + 15 * 24 * 60 * 60 * 1000;
+    }
+    saveState();
+    renderBanBanner();
+    alert(`⚠️ Moderação United Stores: ${reason}. Penalidade aplicada: ${state.banInfo.permanent ? "BANIMENTO PERMANENTE" : "BANIDO POR 15 DIAS (reincidência gera banimento permanente)"}.`);
+  }
+
+  function isUserBanned() {
+    if (state.banInfo.permanent) return true;
+    if (state.banInfo.bannedUntil && Date.now() < state.banInfo.bannedUntil) return true;
+    return false;
+  }
+
+  function renderBanBanner() {
+    const banner = document.getElementById("ban-banner");
+    if (state.banInfo.permanent) {
+      banner.textContent = "🚫 CONTA PERMANENTEMENTE BANIDA por reincidência em agressão verbal, conteúdo adulto ou violação das diretrizes da United Stores.";
+      banner.classList.add("show");
+    } else if (state.banInfo.bannedUntil && Date.now() < state.banInfo.bannedUntil) {
+      const daysLeft = Math.ceil((state.banInfo.bannedUntil - Date.now()) / (24 * 60 * 60 * 1000));
+      banner.textContent = `⏳ CONTA BANIDA POR 15 DIAS (${daysLeft} dia(s) restante(s)) por violação de fala/imagem ou conteúdo adulto. Nova infração causará banimento permanente.`;
+      banner.classList.add("show");
+    } else {
+      banner.classList.remove("show");
+    }
+  }
+
+  function formatBRL(value) {
+    return Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  }
+
+  // Expor funções globais usadas pelos botões do HTML
+  window.toggleFiltersPanel = function() {
+    document.getElementById("filters-panel").classList.toggle("open");
+  };
+
+  window.openModal = function(id) {
+    if (id === "dev-ai-modal" && (!state.user || state.user.email.toLowerCase() !== OWNER_EMAIL)) {
+      alert("Acesso restrito exclusivamente ao desenvolvedor.");
+      return;
+    }
+    document.getElementById(id).classList.add("open");
+    if (id === "plus-modal") drawPixQrCode();
+  };
+
+  window.closeModal = function(id) {
+    document.getElementById(id).classList.remove("open");
+  };
+
+  window.openAuthOrProfile = function() {
+    if (!state.user) {
+      window.openModal("auth-modal");
+    } else {
+      window.openModal("edit-profile-modal");
+    }
+  };
+
+  window.submitGmailLogin = function() {
+    const emailInput = document.getElementById("login-gmail-input").value.trim();
+    const nameInput = document.getElementById("login-name-input").value.trim();
+    if (!emailInput || !emailInput.includes("@")) {
+      alert("Digite um e-mail Gmail válido.");
+      return;
+    }
+    const fallbackName = emailInput.split("@")[0];
+    state.user = {
+      email: emailInput,
+      name: nameInput || (state.user && state.user.email === emailInput ? state.user.name : fallbackName),
+      avatar: state.user && state.user.email === emailInput ? state.user.avatar : ""
+    };
+    saveState();
+    window.closeModal("auth-modal");
+    updateHeaderAndProfile();
+  };
+
+  window.logoutUser = function() {
+    state.user = null;
+    saveState();
+    updateHeaderAndProfile();
+  };
+
+  window.saveProfileEdits = function() {
+    if (!state.user) return;
+    const newName = document.getElementById("edit-username-input").value.trim();
+    const avatarUrl = document.getElementById("edit-avatar-url").value.trim();
+    const fileInput = document.getElementById("edit-avatar-file");
+
+    if (newName) {
+      if (hasForbiddenContent(newName)) {
+        penalizeUser("Nome de usuário contém termo proibido");
+        return;
+      }
+      state.user.name = newName;
+    }
+
+    const finalizeAvatar = (imgData) => {
+      if (imgData) state.user.avatar = imgData;
+      saveState();
+      updateHeaderAndProfile();
+      window.closeModal("edit-profile-modal");
+    };
+
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => finalizeAvatar(reader.result);
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      finalizeAvatar(avatarUrl || "");
+    }
+  };
+
+  function drawPixQrCode() {
+    const canvas = document.getElementById("pix-qr-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 160, 160);
+    ctx.fillStyle = "#071e3d";
+
+    const cells = 21;
+    const cellSize = 6;
+    const offset = 17;
+    const seedStr = "PIX_UNITED_STORES_49.99_" + PIX_PHONE;
+
+    for (let r = 0; r < cells; r++) {
+      for (let c = 0; c < cells; c++) {
+        const isCorner = (r < 5 && c < 5) || (r < 5 && c >= cells - 5) || (r >= cells - 5 && c < 5);
+        const charCode = seedStr.charCodeAt((r * cells + c) % seedStr.length);
+        if (isCorner || ((r * 7 + c * 13 + charCode) % 2 === 0)) {
+          ctx.fillRect(offset + c * cellSize, offset + r * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+  }
+
+  window.copyPixKey = function() {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(PIX_PHONE).catch(() => {});
+    }
+    document.getElementById("pix-feedback").textContent = "Chave PIX copiada: 55 31 8831-8720 (R$ 49,99/mês)";
+  };
+
+  window.activatePlusPlan = function() {
+    if (!state.user) {
+      alert("Faça login com seu Gmail primeiro.");
+      return;
+    }
+    state.isPlus = true;
+    state.finance.salesCount += 1;
+    state.finance.totalReceived = Number((state.finance.totalReceived + 49.99).toFixed(2));
+    state.finance.history.push(49.99);
+    saveState();
+    document.getElementById("pix-feedback").textContent = "✅ United Stores Plus ATIVO! Acesso ilimitado para publicar na vitrine.";
+    updateHeaderAndProfile();
+  };
+
+  window.openPublishModal = function() {
+    if (!state.user) {
+      alert("Faça login com seu Gmail para publicar.");
+      return;
+    }
+    if (isUserBanned()) {
+      renderBanBanner();
+      return;
+    }
+    if (!state.isPlus) {
+      alert("Assine o United Stores Plus (R$ 49,99/mês) para liberar o botão ilimitado de colocar produtos na vitrine.");
+      window.openModal("plus-modal");
+      return;
+    }
+    window.openModal("publish-product-modal");
+  };
+
+  window.publishPlusProduct = function() {
+    if (!state.isPlus || isUserBanned()) return;
+    const name = document.getElementById("pub-name").value.trim();
+    const price = parseFloat(document.getElementById("pub-price").value);
+    const category = document.getElementById("pub-category").value;
+    const desc = document.getElementById("pub-desc").value.trim();
+    const videoUrl = document.getElementById("pub-video-url").value.trim();
+    const imgFiles = document.getElementById("pub-images").files;
+    const vidFile = document.getElementById("pub-video-file").files[0];
+
+    if (!name || isNaN(price) || price <= 0) {
+      alert("Preencha o nome e um preço válido.");
+      return;
+    }
+    if (hasForbiddenContent(name) || hasForbiddenContent(desc)) {
+      penalizeUser("Produto contém termo ilícito, adulto ou ofensivo");
+      return;
+    }
+
+    const readFilesAsDataUrls = (fileList) => {
+      const list = Array.from(fileList || []);
+      return Promise.all(list.map(f => new Promise(res => {
+        const reader = new FileReader();
+        reader.onload = () => res(reader.result);
+        reader.readAsDataURL(f);
+      })));
+    };
+
+    readFilesAsDataUrls(imgFiles).then(imgs => {
+      const finalImages = imgs.length > 0 ? imgs : [makeSvgThumbnail(name, "United Stores Plus", "#128c3e")];
+      const finishCreate = (vidSrc) => {
+        const newProd = {
+          id: "plus-" + Date.now(),
+          name,
+          price,
+          category,
+          store: "United Stores Plus",
+          rating: "5.0",
+          salesRank: 999999,
+          isPlus: true,
+          seller: state.user.name,
+          description: desc || "Produto interno exclusivo publicado no United Stores Plus.",
+          image: finalImages[0],
+          images: finalImages,
+          videoUrl: vidSrc || videoUrl || "",
+          url: "#plus-" + Date.now()
+        };
+        state.plusProducts.unshift(newProd);
+        saveState();
+        renderPlusShowcase();
+        window.closeModal("publish-product-modal");
+        alert("✅ Produto publicado na vitrine com a logo da United Stores!");
+      };
+
+      if (vidFile) {
+        const vReader = new FileReader();
+        vReader.onload = () => finishCreate(vReader.result);
+        vReader.readAsDataURL(vidFile);
+      } else {
+        finishCreate("");
+      }
+    });
+  };
+
+  let activeProductId = null;
+
+  function findProductById(id) {
+    const plusFound = state.plusProducts.find(p => p.id === id);
+    if (plusFound) return plusFound;
+    return catalog.find(p => p.id === id) || catalog[0];
+  }
+
+  window.openProductDetail = function(id) {
+    const prod = findProductById(id);
+    if (!prod) return;
+    activeProductId = prod.id;
+
+    document.getElementById("detail-title").textContent = prod.name;
+    const galleryHtml = (prod.images && prod.images.length > 1)
+      ? `<div style="display:flex; gap:8px; flex-wrap:wrap; margin:8px 0;">${prod.images.map(src => `<img src="${src}" alt="${prod.name}" style="width:110px; height:80px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1;" />`).join("")}</div>`
+      : "";
+
+    let videoHtml = "";
+    if (prod.videoUrl) {
+      if (prod.videoUrl.startsWith("data:video") || prod.videoUrl.endsWith(".mp4")) {
+        videoHtml = `<video src="${prod.videoUrl}" controls style="width:100%; max-height:240px; border-radius:10px; margin-top:8px;"></video>`;
+      } else {
+        videoHtml = `<div style="margin-top:8px;"><a href="${prod.videoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">▶️ Assistir Vídeo do Produto</a></div>`;
+      }
+    }
+
+    const buyBtnHtml = prod.isPlus
+      ? `<button class="btn btn-primary" onclick="buyInternalProduct('${prod.id}')">🛒 Comprar na United Stores</button>`
+      : `<a class="btn btn-primary" href="${prod.url}" target="_blank" rel="noopener noreferrer">🔗 Ir Direto ao Produto em ${prod.store}</a>`;
+
+    document.getElementById("detail-content").innerHTML = `
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; align-items:start;">
+        <img src="${prod.image}" alt="${prod.name}" style="width:100%; max-height:220px; object-fit:cover; border-radius:12px; border:1px solid var(--border);" />
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--blue-primary);">${prod.store} • ${prod.category}</div>
+          <div class="product-price" style="margin:8px 0;">${formatBRL(prod.price)}</div>
+          <div class="product-rating">⭐ Avaliação: ${prod.rating} / 5.0</div>
+          <p style="font-size:0.88rem; margin-top:8px; color:var(--text-main);">${prod.description}</p>
+          ${galleryHtml}
+          ${videoHtml}
+          <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">${buyBtnHtml}</div>
+        </div>
+      </div>
+    `;
+
+    // Produtos semelhantes acima da aba de comentários
+    const similarList = catalog
+      .filter(item => item.id !== prod.id && item.category === prod.category)
+      .slice(0, 6);
+
+    document.getElementById("detail-similar-grid").innerHTML = similarList.map(sim => `
+      <div class="similar-mini" onclick="openProductDetail('${sim.id}')">
+        <div style="font-weight:700; margin-bottom:4px;">${sim.name}</div>
+        <div class="price">${formatBRL(sim.price)}</div>
+        <div style="color:var(--text-muted);">${sim.store}</div>
+      </div>
+    `).join("");
+
+    renderCommentsList(prod.id);
+    window.openModal("product-detail-modal");
+  };
+
+  window.buyInternalProduct = function(id) {
+    const prod = findProductById(id);
+    if (!prod) return;
+    state.finance.salesCount += 1;
+    state.finance.totalReceived = Number((state.finance.totalReceived + prod.price).toFixed(2));
+    state.finance.history.push(Number(prod.price));
+    saveState();
+    alert(`✅ Compra registrada para "${prod.name}" (${formatBRL(prod.price)})! Atualizado no painel de Configurações.`);
+  };
+
+  function renderCommentsList(productId) {
+    const list = state.commentsByProduct[productId] || [];
+    const container = document.getElementById("detail-comments-list");
+    if (list.length === 0) {
+      container.innerHTML = `<p style="font-size:0.84rem; color:var(--text-muted);">Ainda não há comentários públicos neste produto. Seja o primeiro a avaliar!</p>`;
+      return;
+    }
+    container.innerHTML = list.map(c => `
+      <div class="comment-item">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:700;">
+          <span>${c.author} (${c.email})</span>
+          <span style="color:#d97706;">${"⭐".repeat(c.rating)}</span>
+        </div>
+        <div style="font-size:0.86rem; margin-top:4px;">${c.text}</div>
+        ${c.image ? `<img src="${c.image}" alt="Anexo do comentário" />` : ""}
+      </div>
+    `).join("");
+  }
+
+  window.submitProductComment = function() {
+    if (!activeProductId) return;
+    if (!state.user) {
+      alert("Faça login com seu Gmail para comentar ou avaliar.");
+      return;
+    }
+    if (isUserBanned()) {
+      renderBanBanner();
+      return;
+    }
+    const text = document.getElementById("comment-text").value.trim();
+    const rating = parseInt(document.getElementById("comment-rating").value, 10) || 5;
+    const imgFile = document.getElementById("comment-image-file").files[0];
+
+    if (!text && !imgFile) {
+      alert("Escreva um comentário ou anexe uma foto.");
+      return;
+    }
+    if (hasForbiddenContent(text)) {
+      penalizeUser("Comentário contém agressão verbal ou conteúdo adulto");
+      return;
+    }
+
+    const pushComment = (imgData) => {
+      if (!state.commentsByProduct[activeProductId]) {
+        state.commentsByProduct[activeProductId] = [];
+      }
+      state.commentsByProduct[activeProductId].unshift({
+        author: state.user.name,
+        email: state.user.email,
+        rating,
+        text,
+        image: imgData || ""
+      });
+      document.getElementById("comment-text").value = "";
+      document.getElementById("comment-image-file").value = "";
+      saveState();
+      renderCommentsList(activeProductId);
+    };
+
+    if (imgFile) {
+      const reader = new FileReader();
+      reader.onload = () => pushComment(reader.result);
+      reader.readAsDataURL(imgFile);
+    } else {
+      pushComment("");
+    }
+  };
+
+  // Configurações & Gráfico (Verde = Lucro / Alta | Vermelho = Prejuízo / Queda)
+  window.openSettingsModal = function() {
+    renderFinanceDashboard();
+    window.openModal("settings-modal");
+  };
+
+  window.simulateFinancePoint = function(isProfit) {
+    const delta = isProfit
+      ? Number((180 + Math.random() * 900).toFixed(2))
+      : -Number((150 + Math.random() * 750).toFixed(2));
+    state.finance.history.push(delta);
+    if (delta > 0) {
+      state.finance.salesCount += 1;
+      state.finance.totalReceived = Number((state.finance.totalReceived + delta).toFixed(2));
+    }
+    saveState();
+    renderFinanceDashboard();
+  };
+
+  function renderFinanceDashboard() {
+    document.getElementById("fin-total-sales").textContent = String(state.finance.salesCount);
+    document.getElementById("fin-total-received").textContent = formatBRL(state.finance.totalReceived);
+
+    const hist = state.finance.history.length ? state.finance.history : [100];
+    const lastVal = hist[hist.length - 1];
+    const statusEl = document.getElementById("fin-profit-status");
+    if (lastVal >= 0) {
+      statusEl.textContent = `Lucro (+${formatBRL(lastVal)})`;
+      statusEl.style.color = "#128c3e";
+    } else {
+      statusEl.textContent = `Prejuízo (${formatBRL(lastVal)})`;
+      statusEl.style.color = "#c62828";
+    }
+
+    const canvas = document.getElementById("profit-chart-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const maxAbs = Math.max(100, ...hist.map(v => Math.abs(v)));
+    const midY = h / 2;
+    const padX = 36;
+    const stepX = (w - padX * 2) / Math.max(1, hist.length - 1);
+
+    // Linha zero
+    ctx.strokeStyle = "#94a3b8";
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(padX, midY);
+    ctx.lineTo(w - padX, midY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    for (let i = 1; i < hist.length; i++) {
+      const x1 = padX + (i - 1) * stepX;
+      const y1 = midY - (hist[i - 1] / maxAbs) * (h * 0.38);
+      const x2 = padX + i * stepX;
+      const y2 = midY - (hist[i] / maxAbs) * (h * 0.38);
+
+      // Verde quando sobe/lucro, vermelho quando cai/prejuízo
+      const isUpOrProfit = hist[i] >= 0 && y2 <= y1;
+      ctx.strokeStyle = isUpOrProfit ? "#128c3e" : "#c62828";
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+
+    hist.forEach((val, idx) => {
+      const cx = padX + idx * stepX;
+      const cy = midY - (val / maxAbs) * (h * 0.38);
+      ctx.fillStyle = val >= 0 ? "#128c3e" : "#c62828";
+      ctx.beginPath();
+      ctx.arc(cx, cy, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  // Suporte IA
+  window.sendAiSupportMessage = function() {
+    const input = document.getElementById("ai-question-input");
+    const q = input.value.trim();
+    if (!q) return;
+    const log = document.getElementById("ai-chat-log");
+    log.innerHTML += `<div class="ai-msg user">${q.replace(/</g, "&lt;")}</div>`;
+
+    let reply = "A United Stores reúne mais de 20.000 produtos de lojas autorizadas (com foco em RTX, teclados, monitores e PCs) além da vitrine Plus por R$ 49,99/mês via PIX 55 31 8831-8720.";
+    const ql = q.toLowerCase();
+    if (ql.includes("plus") || ql.includes("pix") || ql.includes("49")) {
+      reply = "O plano United Stores Plus custa R$ 49,99/mês via PIX no número 55 31 8831-8720 e dá acesso ilimitado para colocar produtos com a logo da loja.";
+    } else if (ql.includes("ban") || ql.includes("regra") || ql.includes("15")) {
+      reply = "Agressões verbais ou conteúdo adulto geram banimento de 15 dias na 1ª ocorrência e banimento permanente na reincidência.";
+    } else if (ql.includes("whatsapp") || ql.includes("bug")) {
+      reply = "Para relatar bugs ou falar com o suporte direto, use o botão WhatsApp (55 31 99537-06).";
+    }
+
+    log.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
+    log.scrollTop = log.scrollHeight;
+    input.value = "";
+  };
+
+  // IA de Suporte ao Desenvolvedor I & II
+  window.runDailyAiCycleNow = function() {
+    const removeCount = Math.min(2000, Math.max(0, catalog.length - 5000));
+    if (removeCount > 0) {
+      catalog.splice(0, removeCount);
+    }
+    state.aiStats.cycleCount += 1;
+    const seed = state.aiStats.cycleCount;
+    const additions = new Array(5000);
+    const startId = catalog.length + 1;
+    for (let i = 0; i < 5000; i++) {
+      additions[i] = createCatalogItem(startId + i, seed);
+    }
+    catalog = catalog.concat(additions);
+    saveState();
+    applyFiltersAndRender();
+
+    const log1 = document.getElementById("dev-ai-1-log");
+    if (log1) {
+      log1.textContent = `✅ Ciclo #${seed} executado: -${removeCount} produtos antigos removidos e +5.000 novos produtos adicionados. Total atual: ${catalog.length.toLocaleString("pt-BR")} produtos.`;
+    }
+  };
+
+  window.auditExternalCatalog = function() {
+    const beforeLen = catalog.length;
+    catalog = catalog.filter(item => !hasForbiddenContent(item.name) && !hasForbiddenContent(item.description));
+    const blocked = beforeLen - catalog.length;
+    state.aiStats.blockedCrimeItems += blocked;
+    saveState();
+    applyFiltersAndRender();
+    const log1 = document.getElementById("dev-ai-1-log");
+    if (log1) {
+      log1.textContent = `🛡️ Auditoria IA I concluída: ${blocked} produto(s) suspeito(s)/criminoso(s) bloqueado(s). Catálogo íntegro: ${catalog.length.toLocaleString("pt-BR")} itens.`;
+    }
+  };
+
+  window.runInternalAiSupervision = function() {
+    let flaggedProducts = 0;
+    state.plusProducts = state.plusProducts.filter(p => {
+      if (hasForbiddenContent(p.name) || hasForbiddenContent(p.description)) {
+        flaggedProducts++;
+        return false;
+      }
+      return true;
+    });
+
+    let flaggedComments = 0;
+    Object.keys(state.commentsByProduct).forEach(pid => {
+      const arr = state.commentsByProduct[pid] || [];
+      state.commentsByProduct[pid] = arr.filter(c => {
+        if (hasForbiddenContent(c.text)) {
+          flaggedComments++;
+          return false;
+        }
+        return true;
+      });
+    });
+
+    if (flaggedProducts > 0 || flaggedComments > 0) {
+      penalizeUser("IA II detectou conteúdo suspeito/ofensivo em produto interno ou comentário");
+    }
+
+    saveState();
+    renderPlusShowcase();
+    const log2 = document.getElementById("dev-ai-2-log");
+    if (log2) {
+      log2.textContent = `🔍 IA II supervisionou vitrine interna: ${flaggedProducts} produto(s) suspeito(s) removido(s) e ${flaggedComments} comentário(s) malicioso(s) limpo(s).`;
+    }
+  };
+
+  window.clearBanForTesting = function() {
+    state.banInfo = { strikes: 0, bannedUntil: 0, permanent: false };
+    saveState();
+    renderBanBanner();
+    const log2 = document.getElementById("dev-ai-2-log");
+    if (log2) log2.textContent = "♻️ Status de banimento resetado para testes.";
+  };
+
+  // Renderização das vitrines e paginação
+  window.applyFiltersAndRender = function() {
+    const q = (document.getElementById("search-input").value || "").trim().toLowerCase();
+    const cat = document.getElementById("filter-category").value;
+    const store = document.getElementById("filter-store").value;
+    const maxPriceVal = parseFloat(document.getElementById("filter-max-price").value);
+    const sort = document.getElementById("filter-sort").value;
+
+    filteredCatalog = catalog.filter(item => {
+      if (cat !== "all" && item.category !== cat) return false;
+      if (store !== "all" && item.store !== store) return false;
+      if (!isNaN(maxPriceVal) && maxPriceVal > 0 && item.price > maxPriceVal) return false;
+      if (q) {
+        const hay = `${item.name} ${item.category} ${item.store} ${item.description}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+
+    if (sort === "price-asc") {
+      filteredCatalog.sort((a, b) => a.price - b.price);
+    } else if (sort === "price-desc") {
+      filteredCatalog.sort((a, b) => b.price - a.price);
+    } else if (sort === "rating") {
+      filteredCatalog.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+    } else {
+      filteredCatalog.sort((a, b) => b.salesRank - a.salesRank);
+    }
+
+    state.currentPage = 1;
+    renderCurrentPage();
+  };
+
+  function renderProductCard(item) {
+    const plusBadge = item.isPlus ? `<span class="badge-plus">UNITED STORES PLUS</span>` : "";
+    const externalOrInternalLink = item.isPlus
+      ? `<button class="btn btn-primary btn-full" onclick="openProductDetail('${item.id}')">Ver Produto & Comprar</button>`
+      : `<a class="btn btn-primary btn-full" href="${item.url}" target="_blank" rel="noopener noreferrer">Abrir em ${item.store}</a>`;
+
+    return `
+      <article class="product-card">
+        <div class="product-media">
+          <img src="${item.image}" alt="${item.name}" loading="lazy" />
+          <span class="badge-store">${item.store}</span>
+          ${plusBadge}
+        </div>
+        <div class="product-body">
+          <div class="product-name">${item.name}</div>
+          <div class="product-desc">${item.description}</div>
+          <div class="product-price">${formatBRL(item.price)}</div>
+          <div class="product-rating">⭐ ${item.rating} • ${item.category}</div>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-outline" onclick="openProductDetail('${item.id}')">Detalhes & Comentários</button>
+          <button class="btn btn-outline" onclick="openProductDetail('${item.id}')">Semelhantes</button>
+          ${externalOrInternalLink}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderPlusShowcase() {
+    const wrapper = document.getElementById("plus-showcase-wrapper");
+    const grid = document.getElementById("plus-products-grid");
+    if (!state.plusProducts || state.plusProducts.length === 0) {
+      wrapper.style.display = "none";
+      return;
+    }
+    wrapper.style.display = "block";
+    grid.innerHTML = state.plusProducts.map(renderProductCard).join("");
+  }
+
+  function renderCurrentPage() {
+    const totalItems = filteredCatalog.length;
+    const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+    if (state.currentPage > totalPages) state.currentPage = totalPages;
+
+    const startIdx = (state.currentPage - 1) * ITEMS_PER_PAGE;
+    const pageItems = filteredCatalog.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+
+    document.getElementById("main-products-grid").innerHTML = pageItems.length
+      ? pageItems.map(renderProductCard).join("")
+      : `<p style="padding:20px; font-weight:700;">Nenhum produto encontrado com esses filtros.</p>`;
+
+    document.getElementById("catalog-summary").textContent =
+      `Exibindo ${pageItems.length} de ${totalItems.toLocaleString("pt-BR")} produtos filtrados (Catálogo total ativo: ${catalog.length.toLocaleString("pt-BR")} itens)`;
+
+    document.getElementById("stat-total-products").textContent =
+      `Catálogo: ${catalog.length.toLocaleString("pt-BR")} Produtos`;
+
+    const pagBar = document.getElementById("pagination-bar");
+    pagBar.innerHTML = `
+      <button class="btn btn-outline" ${state.currentPage <= 1 ? "disabled" : ""} onclick="goToPage(${state.currentPage - 1})">◀ Anterior</button>
+      <span style="font-weight:800; font-size:0.9rem;">Página ${state.currentPage} de ${totalPages.toLocaleString("pt-BR")}</span>
+      <button class="btn btn-outline" ${state.currentPage >= totalPages ? "disabled" : ""} onclick="goToPage(${state.currentPage + 1})">Próxima ▶</button>
+    `;
+  }
+
+  window.goToPage = function(pageNum) {
+    state.currentPage = Math.max(1, pageNum);
+    renderCurrentPage();
+    window.scrollTo({ top: 120, behavior: "smooth" });
+  };
+
+  function updateHeaderAndProfile() {
+    const strip = document.getElementById("profile-strip");
+    const authBtn = document.getElementById("btn-auth-action");
+    const authStatus = document.getElementById("stat-auth-status");
+    const devBtn = document.getElementById("btn-secret-dev");
+
+    if (state.user) {
+      strip.classList.add("active");
+      authBtn.textContent = "👤 Meu Perfil";
+      authStatus.textContent = `Logado: ${state.user.email}${state.isPlus ? " • PLUS ATIVO" : ""}`;
+      document.getElementById("profile-display-name").textContent = state.user.name + (state.isPlus ? " [UNITED STORES PLUS]" : "");
+      document.getElementById("profile-display-email").textContent = state.user.email;
+      document.getElementById("edit-username-input").value = state.user.name;
+
+      const avatarBox = document.getElementById("profile-avatar-box");
+      if (state.user.avatar) {
+        avatarBox.innerHTML = `<img src="${state.user.avatar}" alt="Avatar" />`;
+      } else {
+        avatarBox.textContent = (state.user.name || "U").charAt(0).toUpperCase();
+      }
+
+      if (state.user.email.toLowerCase() === OWNER_EMAIL) {
+        devBtn.style.display = "inline-flex";
+      } else {
+        devBtn.style.display = "none";
+      }
+    } else {
+      strip.classList.remove("active");
+      authBtn.textContent = "✉️ Entrar com Gmail";
+      authStatus.textContent = "Visitante (Login Gmail p/ Perfil)";
+      devBtn.style.display = "none";
+    }
+  }
+
+  // Inicialização segura
+  loadState();
+  catalog = buildInitialCatalog(INITIAL_CATALOG_SIZE);
+  filteredCatalog = catalog.slice();
+  renderBanBanner();
+  updateHeaderAndProfile();
+  renderPlusShowcase();
+  renderCurrentPage();
+})();
+</script>
+</body>
+</html>
